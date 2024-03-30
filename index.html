@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Translator Bahasa "G"</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    }
+
+    #container {
+      text-align: center;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    input[type="text"], input[type="submit"] {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus, input[type="submit"]:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #translatedText {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>Translator Bahasa "G"</h1>
+    <form id="translationForm">
+      <input type="text" id="textInput" placeholder="Masukkan teks" autocomplete="off">
+      <input type="submit" value="Terjemahkan">
+    </form>
+    <p id="translatedText"></p>
+  </div>
+
+  <script>
+    function toLanguageG(text) {
+      let result = [];
+      let words = text.split(" ");
+
+      for (let word of words) {
+        let newWord = '';
+
+        for (let i = 0; i < word.length; i++) {
+          if ("aeiou".indexOf(word[i].toLowerCase()) !== -1) {
+            newWord += word[i] + 'g' + word[i];
+          } else {
+            newWord += word[i];
+          }
+        }
+        result.push(newWord);
+      }
+      return result.join(" ");
+    }
+
+    document.getElementById('translationForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      let inputText = document.getElementById('textInput').value;
+      let translatedText = toLanguageG(inputText);
+      document.getElementById('translatedText').textContent = `Hasil terjemahan: ${translatedText}`;
+    });
+  </script>
+</body>
+</html>
